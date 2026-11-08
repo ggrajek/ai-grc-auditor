@@ -1,34 +1,83 @@
-\# Local AI GRC \& Non-Human Identity (NHI) Auditor
+# AI GRC Auditor (`ai-grc-auditor`)
 
+An open-source, air-gapped, zero-cost AI Governance, Risk, and Compliance (GRC) audit engine. It evaluates non-human identities (NHI), autonomous agents, and AI service principals against authoritative frameworks (such as the **NIST AI RMF 1.0** and **Zero Trust NHI Standards**) using pure local Retrieval-Augmented Generation (RAG).
 
+## Architecture & Data Flow
 
-\# AI-GRC-Auditor
+The engine cleanly separates identity state, regulatory baselines, and inference:
 
+```
+[ identity_inventory.json ]          [ framework_controls.json ]
+  (Directory / NHI Objects)            (NIST AI RMF / Zero Trust Controls)
+             │                                    │
+             │                                    ▼
+             │                         [ nomic-embed-text ]
+             │                       (Local Vector Embeddings)
+             │                                    │
+             ▼                                    ▼
+      [ rag_auditor.py ] ◄────────────── [ Cosine Similarity Match ]
+      (Ingestion & Dossier)              (Retrieves Top-K Relevant Controls)
+             │
+             ▼
+      [ LLaMA 3.2:3b ] (Local Ollama Engine)
+             │
+             ▼
+      [ Grounded Audit Report: PASS / FAIL with Exact Citations ]
+```
 
+### Key Components
 
-An air-gapped, zero-cloud-cost automated auditing harness designed to evaluate autonomous AI agents, non-human identities (NHIs), and enterprise AI deployments against the \*\*NIST AI Risk Management Framework (NIST AI RMF 1.0)\*\* and Zero-Trust principles.
+1. **Identity State Tier (`identity_inventory.json`):** Holds directory objects, assigned scopes, credential persistence, operational agency boundaries, and session-attribution flags.
+2. **Governance Knowledge Base (`framework_controls.json`):** Contains official control language, titles, and unique control IDs (e.g., `NIST-AI-RMF-GOVERN-1.2`, `ZT-NHI-AUTH-03`).
+3. **Local Vector Search (`nomic-embed-text`):** Generates 768-dimensional embeddings to match identity findings semantically to relevant controls without cloud APIs or token costs.
+4. **Deterministic Local Inference (`llama3.2:3b`):** Delivers grounded audit reports containing explicit PASS/FAIL verdicts and remediation requirements.
 
+---
 
+## Prerequisites
 
-\## Features
+- [Ollama](https://ollama.com/) installed and running.
+- Python 3.10+ (tested on Windows ARM64 / x64).
 
-\- \*\*100% Local Inference:\*\* Driven by Meta Llama 3.2 via Ollama on an OpenAI-compatible runtime with zero third-party token consumption.
+Pull the local models:
+```powershell
+ollama pull llama3.2:3b
+ollama pull nomic-embed-text
+```
 
-\- \*\*Privacy-Preserving Audit Engine:\*\* Capable of analyzing internal architecture, SSPs, and sensitive access logs without transmitting data outside organizational boundaries.
+---
 
-\- \*\*NHI \& Agent Boundary Analysis:\*\* Automatically evaluates excessive agency, standing privileges, credential hygiene, and prompt-injection threat surfaces.
+## Installation & Setup
 
-\- \*\*NIST AI RMF Alignment:\*\* Directly maps findings to GOVERN and MANAGE function controls.
+1. Clone the repository:
+```powershell
+git clone [https://github.com/ggrajek/ai-grc-auditor.git](https://github.com/ggrajek/ai-grc-auditor.git)
+cd ai-grc-auditor
+```
 
+2. Create and activate a Python virtual environment:
+```powershell
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+```
 
+3. Install dependencies:
+```powershell
+pip install -r requirements.txt
+```
 
-\## Quickstart
+---
 
+## Running the Auditor
 
+Execute the RAG engine against the configured directory inventory:
 
-1\. \*\*Pull the local inference model:\*\*
+```powershell
+python rag_auditor.py
+```
 
-&#x20;  ```bash
+### Sample Output
 
-&#x20;  ollama pull llama3.2:3b
-
+The engine evaluates both non-compliant and compliant identities:
+- **`Tier-2 Support AI Remediation Agent`**: Produces a **`[FAIL]`** verdict citing excessive permissions (`Directory.ReadWrite.All`), missing secret rotation, and lack of human-in-the-loop authorization.
+- **`SecOps Incident Triage Copilot`**: Produces a **`[PASS]`** verdict validating ephemeral short-lived tokens, least-privilege read scopes, and session-bound attribution.
