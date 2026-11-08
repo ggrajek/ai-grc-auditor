@@ -22,5 +22,28 @@
       "attributing_identity": "ServicePrincipal",
       "session_bound": false
     }
+  },
+  {
+    "app_display_name": "SecOps Incident Triage Copilot",
+    "app_id": "c47f9e11-82ab-4ce0-9411-fa028bc6110a",
+    "object_type": "ManagedIdentity",
+    "directory_provider": "Microsoft Entra ID",
+    "assigned_roles_and_scopes": [
+      "SecurityEvents.Read.All",
+      "AuditLog.Read.All"
+    ],
+    "credential_type": "WorkloadIdentityFederation",
+    "credential_rotation_days": 1,
+    "is_credential_persistent": false,
+    "interactive_user_delegation": true,
+    "execution_boundary": {
+      "autonomous_tool_calling": false,
+      "human_in_the_loop_approval": true,
+      "input_sanitization_enabled": true
+    },
+    "audit_logging": {
+      "attributing_identity": "DelegatedUserSession",
+      "session_bound": true
+    }
   }
 ]

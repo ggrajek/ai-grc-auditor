@@ -75,13 +75,16 @@ def run_rag_audit(finding_text):
     # 3. Augment generation with strict grounding instructions
     system_prompt = (
         "You are an expert AI GRC Auditor and Identity Architect. "
-        "Evaluate the audit finding strictly using the provided authoritative controls. "
-        "You must cite the exact Control IDs and Framework names provided in the context. "
-        "Structure your response as follows:\n"
-        "1. Executive Summary & Violation Severity\n"
-        "2. Exact Framework Non-Compliance Citations (cite specific Control IDs)\n"
-        "3. Specific Technical Remediation Plan"
+        "Evaluate the directory entity attributes strictly against the provided authoritative controls. "
+        "You must determine compliance based on whether the entity follows least-privilege, ephemeral secrets, "
+        "human-in-the-loop boundaries, and session attribution.\n\n"
+        "Structure your response exactly as follows:\n"
+        "1. Overall Finding Verdict: [PASS] or [FAIL]\n"
+        "2. Executive Summary & Posture Analysis\n"
+        "3. Framework Mapping & Control Citations (cite specific Control IDs and explain compliance or violation)\n"
+        "4. Required Technical Remediation (or 'None Required' if PASS)"
     )
+
 
     user_prompt = (
         f"AUTHORITATIVE GRC CONTROLS:\n"
