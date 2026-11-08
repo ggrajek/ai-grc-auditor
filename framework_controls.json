@@ -1,0 +1,37 @@
+[
+  {
+    "control_id": "NIST-AI-RMF-GOVERN-1.2",
+    "framework": "NIST AI RMF 1.0",
+    "category": "GOVERN",
+    "title": "Accountability, Roles, and Responsibilities",
+    "text": "Roles and responsibilities for AI system design, development, deployment, evaluation, and monitoring are clearly defined, assigned, and documented. Personnel and autonomous components have appropriate operational boundaries and authorizations."
+  },
+  {
+    "control_id": "NIST-AI-RMF-MAP-1.5",
+    "framework": "NIST AI RMF 1.0",
+    "category": "MAP",
+    "title": "System Boundaries and Autonomous Agency",
+    "text": "Organizational risk tolerances and operational boundaries for autonomous agency, multi-step execution, and third-party API or tool interactions are defined, assessed, and systematically documented prior to deployment."
+  },
+  {
+    "control_id": "NIST-AI-RMF-MANAGE-1.3",
+    "framework": "NIST AI RMF 1.0",
+    "category": "MANAGE",
+    "title": "Risk Mitigation & Least Privilege Safeguards",
+    "text": "Identified AI risks are mitigated through operational controls, including strict enforcement of least privilege, credential isolation, token expiration, and sandboxed tool-calling privileges for non-human identities."
+  },
+  {
+    "control_id": "NIST-AI-RMF-MANAGE-2.4",
+    "framework": "NIST AI RMF 1.0",
+    "category": "MANAGE",
+    "title": "Adversarial Robustness and Injection Prevention",
+    "text": "Mechanisms and controls are implemented to protect AI systems against adversarial inputs, prompt injection, jailbreaks, data exfiltration, and unauthorized downstream tool execution triggered by untrusted context."
+  },
+  {
+    "control_id": "ZT-NHI-AUTH-03",
+    "framework": "Zero Trust Non-Human Identity Standard",
+    "category": "IDENTITY",
+    "title": "Session Attribution and Ephemeral Delegation",
+    "text": "Non-human identities and autonomous service principals must not maintain broad standing access. Actions taken on behalf of end-users must enforce session-bound delegated authentication, auditable lineage, and ephemeral tokens."
+  }
+]

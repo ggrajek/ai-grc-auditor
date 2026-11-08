@@ -2,7 +2,11 @@
 
 
 
-An air-gapped, zero-cloud-cost automated auditing harness designed to evaluate autonomous AI agents and Non-Human Identities (NHIs) against the \*\*NIST AI Risk Management Framework (NIST AI RMF 1.0)\*\* and Zero-Trust principles.
+\# AI-GRC-Auditor
+
+
+
+An air-gapped, zero-cloud-cost automated auditing harness designed to evaluate autonomous AI agents, non-human identities (NHIs), and enterprise AI deployments against the \*\*NIST AI Risk Management Framework (NIST AI RMF 1.0)\*\* and Zero-Trust principles.
 
 
 

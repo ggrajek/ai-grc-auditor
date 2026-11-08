@@ -1,0 +1,26 @@
+[
+  {
+    "app_display_name": "Tier-2 Support AI Remediation Agent",
+    "app_id": "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
+    "object_type": "ServicePrincipal",
+    "directory_provider": "Microsoft Entra ID",
+    "assigned_roles_and_scopes": [
+      "Directory.ReadWrite.All",
+      "User.ReadWrite.All",
+      "db_datawriter@prod-customer-db"
+    ],
+    "credential_type": "ClientSecret",
+    "credential_rotation_days": 0,
+    "is_credential_persistent": true,
+    "interactive_user_delegation": false,
+    "execution_boundary": {
+      "autonomous_tool_calling": true,
+      "human_in_the_loop_approval": false,
+      "input_sanitization_enabled": false
+    },
+    "audit_logging": {
+      "attributing_identity": "ServicePrincipal",
+      "session_bound": false
+    }
+  }
+]
